@@ -6801,9 +6801,9 @@
 https://www.axisandallies.org/forums/topic/35655/grasshopper-s-g40-tournament-edition-rule-set
 <br><br>
 <b>Notes:</b><br>
-- Will not notify for the Axis Economy Objective of 144 IPCs.<br>
-- Will not notify for the Allied Attrition Objective if tied at the end of the game.<br>
-- Does notify for the Allied Europe Objective (liberating Paris) however often disappears before the user can see it.  Will be visible in the game history.<br>
+- The game engine will not notify for the Axis Economy Objective of 144 IPCs.  This can be easily checked on the Player tab to the right. See the Axis total in the Production column.<br>
+- The game engine will not notify for the Allied Attrition Objective if tied at the end of the game.<br>
+- The game engine does notify for the Allied Europe Objective (liberating Paris) however often disappears before the user can see it.  It will show in the game history.<br>
 <br>
 <b>Creator:</b> Young Grasshopper<br>
 <b>TripleA Adaptation:</b> Contango<br><br>
