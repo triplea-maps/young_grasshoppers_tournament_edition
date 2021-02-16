@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE game SYSTEM "game.dtd">
 <game>
-  <info name="Young Grasshoppers Tournament Edition" version="1.0.0"/>
+  <info name="Young Grasshoppers Tournament Edition" version="1.0.1"/>
   <loader javaClass="games.strategy.triplea.TripleA"/>
   <triplea minimumVersion="1.8"/>
   <diceSides value="6"/>
@@ -3468,7 +3468,8 @@
     <attachment name="objectiveAttachment_UK_Pacific_Outer_Perimeter" attachTo="UK_Pacific" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
       <option name="objectiveValue" value="5"/>
       <option name="directPresenceTerritories" value="Sumatra:Java:Borneo:Celebes:Dutch New Guinea:Suriname" count="1"/>
-      <option name="unitPresence" value="aaGun:infantry:artillery:mech_infantry:armour" count="1"/>	  
+      <option name="unitPresence" value="aaGun:infantry:artillery:mech_infantry:armour" count="1"/>
+      <option name="atWarPlayers" value="Japanese" count="1"/>	    
     </attachment>
 	
     <!-- Italians Objectives -->
