@@ -1,11 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE game SYSTEM "game.dtd">
 <game>
-  <info name="Young Grasshoppers Tournament Edition" version="1.0.1"/>
+  <info name="Young Grasshoppers Tournament Edition Work" version="1.0.2"/>
   <loader javaClass="games.strategy.triplea.TripleA"/>
   <triplea minimumVersion="1.8"/>
   <diceSides value="6"/>
   <map>
+	<!-- Version 1.0.2 Updates
+		- Combined Berlin and Tokyo victory objectives
+		- Added new Allied victory objective to control Warsaw + 3 pro-Axis neutrals
+		- Axis economy victory objective changed to 140IPCs (changed in notes, the engine doesn't actually check for this)
+		- Added note about factory upgrade timing
+    -->
+  
     <!-- Full europe list:
 				West Indies:Central United States:Central America:Greenland:Southeast Mexico:Eastern United States:West India:Belgian Congo:Iceland:Quebec:Alberta Saskatchewan Manitoba:Trans-Jordan:British Somaliland:Alexandria:Gibraltar:New Brunswick Nova Scotia:Egypt:Union of South Africa:Cyprus:British Guiana:Gold Coast:Rio de Oro:Ontario:Scotland:South West Africa:Nigeria:Kenya:Malta:United Kingdom:Anglo Egyptian Sudan:Rhodesia:Tanganyika Territory:Newfoundland Labrador:Morocco:French Equatorial Africa:Normandy Bordeaux:French Central Africa:French Madagascar:French Guiana:Algeria:Southern France:Syria:French West Africa:France:Tunisia:Greater Southern Germany:Slovakia Hungary:Western Germany:Romania:Poland:Germany:Norway:Denmark:Holland Belgium:Tobruk:Albania:Northern Italy:Libya:Sicily:Italian Somaliland:Southern Italy:Ethiopia:Sardinia:Belarus:Karelia:Baltic States:Bryansk:Rostov:Nenetsia:Vyborg:Archangel:Eastern Poland:Bessarabia:Russia:Tambov:Ukraine:Western Ukraine:Vologda:Volgograd:Turkmenistan:Novgorod:Caucasus:Smolensk:Samara:Portugal:Portuguese Guinea:Ecuador:Chile:Afghanistan:Sierra Leone:Turkey:Mozambique:Saudi Arabia:Paraguay:Switzerland:Pripet Marshes:Eire:Crete:Argentina:Bulgaria:Angola:Greece:Iraq:Eastern Persia:Uruguay:Brazil:Venezuela:Northwest Persia:Persia:Sweden:Yugoslavia:Spain:Colombia:Bolivia:Liberia:Peru:Finland:Suriname
 				-->
@@ -4109,29 +4116,29 @@
       <option name="uses" value="1"/>
       <option name="when" value="after:britishBattle"/>
       <option name="placement" value="France:infantry:infantry:infantry:infantry"/>
-	  <option name="notification" value="Allies_Europe_Objective"/>	  
+	  <!-- <option name="notification" value="Allies_Europe_Objective"/>	   -->
       <!-- the below just prevents the other triggers from ever firing, by setting the condition to be something impossible -->
       <option name="players" value="French"/>
       <option name="playerAttachmentName" value="RulesAttachment" count="conditionAttachment_French_1_Can_Be_Liberated_Switch"/>
       <option name="playerProperty" value="switch" count="false"/>
-    </attachment>
+    </attachment>	
     <attachment name="triggerAttachment_French_1_Liberation_By_Russians" attachTo="French" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
       <option name="trigger" value="conditionAttachment_French_1_Liberation_Switch"/>
       <option name="uses" value="1"/>
       <option name="when" value="after:russiansBattle"/>
       <option name="placement" value="France:infantry:infantry:infantry:infantry"/>
-	  <option name="notification" value="Allies_Europe_Objective"/>	  
+	  <!-- <option name="notification" value="Allies_Europe_Objective"/>	  -->
       <!-- the below just prevents the other triggers from ever firing, by setting the condition to be something impossible -->
       <option name="players" value="French"/>
       <option name="playerAttachmentName" value="RulesAttachment" count="conditionAttachment_French_1_Can_Be_Liberated_Switch"/>
       <option name="playerProperty" value="switch" count="false"/>	  
-    </attachment>
+    </attachment>	
     <attachment name="triggerAttachment_French_1_Liberation_By_Americans" attachTo="French" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
       <option name="trigger" value="conditionAttachment_French_1_Liberation_Switch"/>
       <option name="uses" value="1"/>
       <option name="when" value="after:americansBattle"/>
       <option name="placement" value="France:infantry:infantry:infantry:infantry"/>
-	  <option name="notification" value="Allies_Europe_Objective"/>	  
+	  <!-- <option name="notification" value="Allies_Europe_Objective"/>	  -->
       <!-- the below just prevents the other triggers from ever firing, by setting the condition to be something impossible -->
       <option name="players" value="French"/>
       <option name="playerAttachmentName" value="RulesAttachment" count="conditionAttachment_French_1_Can_Be_Liberated_Switch"/>
@@ -4142,7 +4149,7 @@
       <option name="uses" value="1"/>
       <option name="when" value="after:frenchBattle"/>
       <option name="placement" value="France:infantry:infantry:infantry:infantry"/>
-	  <option name="notification" value="Allies_Europe_Objective"/>		  
+	  <!-- <option name="notification" value="Allies_Europe_Objective"/>		  -->
       <!-- the below just prevents the other triggers from ever firing, by setting the condition to be something impossible -->
       <option name="players" value="French"/>
       <option name="playerAttachmentName" value="RulesAttachment" count="conditionAttachment_French_1_Can_Be_Liberated_Switch"/>
@@ -4153,12 +4160,24 @@
       <option name="uses" value="1"/>
       <option name="when" value="after:uk_pacificBattle"/>
       <option name="placement" value="France:infantry:infantry:infantry:infantry"/>
-	  <option name="notification" value="Allies_Europe_Objective"/>		  
+	  <!-- <option name="notification" value="Allies_Europe_Objective"/>		  -->
       <!-- the below just prevents the other triggers from ever firing, by setting the condition to be something impossible -->
       <option name="players" value="French"/>
       <option name="playerAttachmentName" value="RulesAttachment" count="conditionAttachment_French_1_Can_Be_Liberated_Switch"/>
       <option name="playerProperty" value="switch" count="false"/>	  
     </attachment>
+	
+    <attachment name="triggerAttachment_French_1_Liberation_Notification" attachTo="French" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
+      <option name="trigger" value="conditionAttachment_French_1_Liberation_Switch"/>
+      <option name="uses" value="1"/>
+      <option name="when" value="after:britishBattle"/>
+      <option name="when" value="after:russiansBattle"/>	  
+      <option name="when" value="after:americansBattle"/>	  
+      <option name="when" value="after:frenchBattle"/>
+      <option name="when" value="after:uk_pacificBattle"/>	  
+      <option name="players" value="Germans:UK_Pacific:Japanese:British:Italians:Chinese:Russians:Americans:French"/>	  
+	  <option name="notification" value="Allies_Europe_Objective"/>	  
+    </attachment>		
 	
     <!-- Capture of Allied Capitals -->
 
@@ -4946,14 +4965,14 @@
 	
 	<!-- Allied Victory Objectives -->	
 	
-	<attachment name="conditionAttachment_Allies_Berlin_Objective_Switch" attachTo="UK_Pacific" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
+	<attachment name="conditionAttachment_Allies_Supremacy_Objective_Switch" attachTo="UK_Pacific" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
       <option name="switch" value="false"/>      	
     </attachment>
-	<attachment name="conditionAttachment_Allies_Berlin_Objective_Condition" attachTo="UK_Pacific" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="alliedOwnershipTerritories" value="Germany" count="1"/>	
+	<attachment name="conditionAttachment_Allies_Supremacy_Objective_Condition" attachTo="UK_Pacific" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
+      <option name="alliedOwnershipTerritories" value="Germany:Japan" count="1"/>	
     </attachment>	
-	<attachment name="triggerAttachment_Allies_Berlin_Objective" attachTo="UK_Pacific" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
-      <option name="conditions" value="conditionAttachment_Allies_Berlin_Objective_Condition"/>
+	<attachment name="triggerAttachment_Allies_Supremacy_Objective" attachTo="UK_Pacific" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
+      <option name="conditions" value="conditionAttachment_Allies_Supremacy_Objective_Condition"/>
       <option name="when" value="after:uk_pacificBattle"/>
       <option name="when" value="after:britishBattle"/>
       <option name="when" value="after:chineseBattle"/>
@@ -4961,11 +4980,11 @@
       <option name="when" value="after:americansBattle"/>	 
       <option name="when" value="after:frenchBattle"/>	 	  
       <option name="players" value="UK_Pacific"/>
-      <option name="playerAttachmentName" value="RulesAttachment" count="conditionAttachment_Allies_Berlin_Objective_Switch"/>
+      <option name="playerAttachmentName" value="RulesAttachment" count="conditionAttachment_Allies_Supremacy_Objective_Switch"/>
       <option name="playerProperty" value="switch" count="true"/> 
     </attachment>	
-	<attachment name="triggerAttachment_Allies_Berlin_Objective_Notification" attachTo="UK_Pacific" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
-      <option name="trigger" value="conditionAttachment_Allies_Berlin_Objective_Switch"/>
+	<attachment name="triggerAttachment_Allies_Supremacy_Objective_Notification" attachTo="UK_Pacific" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
+      <option name="trigger" value="conditionAttachment_Allies_Supremacy_Objective_Switch"/>
       <option name="players" value="Germans:UK_Pacific:Japanese:British:Italians:Chinese:Russians:Americans:French"/>		  
 	  <option name="when" value="before:uk_pacificEndTurn"/>
 	  <option name="when" value="before:britishEndTurn"/>
@@ -4974,9 +4993,10 @@
 	  <option name="when" value="before:americansEndTurn"/>
 	  <option name="when" value="before:frenchEndTurn"/>
       <option name="uses" value="1"/>
-	  <option name="notification" value="Allies_Berlin_Objective"/>	  
+	  <option name="notification" value="Allies_Supremacy_Objective"/>	  
     </attachment>
 
+	<!-- Merged with Berlin Objective
 	<attachment name="conditionAttachment_Allies_Tokyo_Objective_Switch" attachTo="UK_Pacific" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
       <option name="switch" value="false"/>      	
     </attachment>
@@ -5007,6 +5027,7 @@
       <option name="uses" value="1"/>
 	  <option name="notification" value="Allies_Tokyo_Objective"/>	  
     </attachment>	
+	-->
 
 	<attachment name="conditionAttachment_Allies_Rome_Objective_Switch" attachTo="UK_Pacific" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
       <option name="switch" value="false"/>      	
@@ -5195,6 +5216,38 @@
 	  <option name="when" value="before:frenchEndTurn"/>
       <option name="uses" value="1"/>
 	  <option name="notification" value="Allies_Diplomacy_Objective"/>	  
+    </attachment>
+
+	<attachment name="conditionAttachment_Allies_Pro-Axis_Objective_Switch" attachTo="UK_Pacific" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
+      <option name="switch" value="false"/>      	
+    </attachment>
+	<attachment name="conditionAttachment_Allies_Pro-Axis_Objective_Condition" attachTo="UK_Pacific" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
+      <option name="directOwnershipTerritories" value="Finland:Poland:Bulgaria:Iraq" count="4"/>
+      <option name="players" value="UK_Pacific:British:Chinese:Russians:Americans:French"/>	  
+    </attachment>	
+	<attachment name="triggerAttachment_Allies_Pro-Axis_Objective" attachTo="UK_Pacific" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
+      <option name="conditions" value="conditionAttachment_Allies_Pro-Axis_Objective_Condition"/>
+      <option name="when" value="after:uk_pacificBattle"/>
+      <option name="when" value="after:britishBattle"/>
+      <option name="when" value="after:chineseBattle"/>
+      <option name="when" value="after:russiansBattle"/>	 
+      <option name="when" value="after:americansBattle"/>	 
+      <option name="when" value="after:frenchBattle"/>	 	  
+      <option name="players" value="UK_Pacific"/>
+      <option name="playerAttachmentName" value="RulesAttachment" count="conditionAttachment_Allies_Pro-Axis_Objective_Switch"/>
+      <option name="playerProperty" value="switch" count="true"/> 
+    </attachment>	
+	<attachment name="triggerAttachment_Allies_Pro-Axis_Objective_Notification" attachTo="UK_Pacific" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
+      <option name="trigger" value="conditionAttachment_Allies_Pro-Axis_Objective_Switch"/>
+      <option name="players" value="Germans:UK_Pacific:Japanese:British:Italians:Chinese:Russians:Americans:French"/>		  
+	  <option name="when" value="before:uk_pacificEndTurn"/>
+	  <option name="when" value="before:britishEndTurn"/>
+	  <option name="when" value="before:chineseEndTurn"/>
+	  <option name="when" value="before:russiansEndTurn"/>
+	  <option name="when" value="before:americansEndTurn"/>
+	  <option name="when" value="before:frenchEndTurn"/>
+      <option name="uses" value="1"/>
+	  <option name="notification" value="Allies_Pro-Axis_Objective"/>	  
     </attachment>		
 
     <!-- End Game Notification -->
@@ -6790,7 +6843,7 @@
     <property name="Neutral Flyover Allowed" value="false" editable="false">
       <boolean/>
     </property>
-    <property name="mapName" value="young_grasshoppers_tournament_edition" editable="false"/>
+    <property name="mapName" value="young_grasshoppers_tournament_edition_work" editable="false"/>
     <property name="notes">
       <value><![CDATA[  
 <div style="padding:10px;font-size:14px;background-color:0F1622;text-align:justify;">
@@ -6802,9 +6855,9 @@
 https://www.axisandallies.org/forums/topic/35655/grasshopper-s-g40-tournament-edition-rule-set
 <br><br>
 <b>Notes:</b><br>
-- The game engine will not notify for the Axis Economy Objective of 144 IPCs.  This can be easily checked on the Player tab to the right. See the Axis total in the Production column.<br>
+- The game engine will not notify for the Axis Economy Objective of 140 IPCs.  This can be easily checked on the Player tab to the right. See the Axis total in the Production column.<br>
 - The game engine will not notify for the Allied Attrition Objective if tied at the end of the game.<br>
-- The game engine does notify for the Allied Europe Objective (liberating Paris) however often disappears before the user can see it.  It will show in the game history.<br>
+- Automatic factory upgrades (US and UK) happen at the beginning of the Combat Move phase when politics take effect, which is after the Purchase Units phase.  You may get a warning that you do not have enough production capacity for the units that you've purchased, even though you will have enough capacity by the Place Units phase.  You can click to continue and ignore the warning.<br>
 <br>
 <b>Creator:</b> Young Grasshopper<br>
 <b>TripleA Adaptation:</b> Contango<br><br>
@@ -6825,18 +6878,18 @@ https://www.axisandallies.org/forums/topic/35655/grasshopper-s-g40-tournament-ed
 <p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Pacific</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;-The Axis powers control all 8 originally controlled American Islands in the Pacific</span></p>
 <p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Africa</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;-The Axis powers control Morocco, Algeria, Tunisia, Libya, Tobruk, Alexandria, and Egypt</span></p>
 <p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Asia</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;-The Axis powers control Calcutta, Malaya, Hong Kong, and Shanghai</span></p>
-<p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>America</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;The Axis powers control Washington and/or San Francisco</span></p>
-<p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Economy</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;-All three Axis powers have a combined income of 144 IPCs on the income tracker</span></p>
+<p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Supremacy</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;-The Axis powers control Washington and/or San Francisco</span></p>
+<p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Economy</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;-All three Axis powers have a combined income of 140 IPCs on the income tracker</span></p>
 <h1 style='margin-right:0cm;margin-left:0cm;font-size:32px;font-family:"Times New Roman",serif;font-weight:bold;margin-top:7.5pt;margin-bottom:7.5pt;line-height:30.0pt;background:#272B30; border-box;text-shadow:rgba(0, 0, 0, 0.3) -1px -1px 0px;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><em><span style='font-size:22px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Allied Powers</span></em></h1>
-<p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Berlin</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;The Allied powers control Berlin</span></p>
-<p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Tokyo</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;The Allied powers control Tokyo</span></p>
+<p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Supremacy</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;The Allied powers control Berlin and/or Tokyo</span></p>
 <p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Rome</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;-The Allied powers control Rome</span></p>
 <p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>China</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;-The Allied powers control all 18 originally controlled Chinese territories</span></p>
 <p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Europe</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;-The Allied powers have liberated Paris</span></p>
 <p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Pacific</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;-The Allied powers control all 8 originally controlled Japanese islands in the Pacific</span></p>
 <p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Africa</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;-The Allied powers control all non-neutral territories on the continent of Africa</span></p>
 <p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Asia</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;-The Allied powers control Calcutta, Malaya, Hong Kong, and Shanghai</span></p>
-<p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Diplomacy</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;-The Allies control all pro-allied neutral territories on the board</span></p>
+<p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Pro-Allies</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;-The Allied powers control all 8 original pro-allied neutral territories on the board</span></p>
+<p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Pro-Axis</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;-The Allied powers control Warsaw and all 3 original pro-axis neutral territories on the board</span></p>
 <p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Attrition</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;-The score is tied at the end of 8 complete game rounds (Allies automatically win the war by attrition)</span></p>
 <h1 style='margin-right:0cm;margin-left:0cm;font-size:32px;font-family:"Times New Roman",serif;font-weight:bold;margin-top:7.5pt;margin-bottom:7.5pt;line-height:30.0pt;background:#272B30;'><strong><span style='font-size:22px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>NEW ORDER OF PLAY:</span></strong></h1>
 <p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>REPLACES THE OOB ORDER OF PLAY SEQUENCE</span></strong></p>
