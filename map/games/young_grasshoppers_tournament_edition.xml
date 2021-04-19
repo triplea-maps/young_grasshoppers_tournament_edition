@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE game SYSTEM "game.dtd">
 <game>
-  <info name="Young Grasshoppers Tournament Edition Work" version="1.0.3"/>
+  <info name="Young Grasshoppers Tournament Edition" version="1.0.3"/>
   <loader javaClass="games.strategy.triplea.TripleA"/>
   <triplea minimumVersion="1.8"/>
   <diceSides value="6"/>
@@ -6848,7 +6848,7 @@
     <property name="Neutral Flyover Allowed" value="false" editable="false">
       <boolean/>
     </property>
-    <property name="mapName" value="young_grasshoppers_tournament_edition_work" editable="false"/>
+    <property name="mapName" value="young_grasshoppers_tournament_edition" editable="false"/>
     <property name="notes">
       <value><![CDATA[  
 <div style="padding:10px;font-size:14px;background-color:0F1622;text-align:justify;">
