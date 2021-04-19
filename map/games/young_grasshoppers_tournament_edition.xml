@@ -1,11 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE game SYSTEM "game.dtd">
 <game>
-  <info name="Young Grasshoppers Tournament Edition" version="1.0.2"/>
+  <info name="Young Grasshoppers Tournament Edition Work" version="1.0.3"/>
   <loader javaClass="games.strategy.triplea.TripleA"/>
   <triplea minimumVersion="1.8"/>
   <diceSides value="6"/>
   <map>
+	<!-- Version 1.0.3 Updates
+		- Axis economy victory objective changed back to 144IPCs (changed in notes, the engine doesn't actually check for this)
+		- UK Europe national objectives changed to be 5IPCs each
+    -->	
+	
 	<!-- Version 1.0.2 Updates
 		- Combined Berlin and Tokyo victory objectives
 		- Added new Allied victory objective to control Warsaw + 3 pro-Axis neutrals
@@ -3438,21 +3443,21 @@
     </attachment>
     <!-- British Objectives -->
     <attachment name="objectiveAttachment_British_Mediterranean_Theater" attachTo="British" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="objectiveValue" value="3"/>
+      <option name="objectiveValue" value="5"/>
       <option name="enemyExclusionTerritories" value="92 Sea Zone:93 Sea Zone:94 Sea Zone:95 Sea Zone:96 Sea Zone:97 Sea Zone:98 Sea Zone:99 Sea Zone" count="8"/>
       <option name="unitPresence" value="battleship:carrier:submarine:destroyer:cruiser" count="0"/>	  
     </attachment>  <!-- this should possibly be only for Italian Ships -->
     <attachment name="objectiveAttachment_British_European_Theater" attachTo="British" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="objectiveValue" value="3"/>
+      <option name="objectiveValue" value="5"/>
       <option name="directPresenceTerritories" value="Normandy Bordeaux:France:Southern France" count="1"/>
       <option name="unitPresence" value="aaGun:infantry:artillery:mech_infantry:armour" count="1"/>	  
     </attachment>
     <attachment name="objectiveAttachment_British_Colonies" attachTo="British" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="objectiveValue" value="3"/>
+      <option name="objectiveValue" value="5"/>
       <option name="directOwnershipTerritories" value="Alexandria:Egypt:Gold Coast:Nigeria:Anglo Egyptian Sudan:British Somaliland:Belgian Congo:Kenya:Tanganyika Territory:Rhodesia:South West Africa:Union of South Africa" count="12"/>
     </attachment>
     <attachment name="objectiveAttachment_British_Commonwealth" attachTo="British" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
-      <option name="objectiveValue" value="3"/>
+      <option name="objectiveValue" value="5"/>
       <option name="directOwnershipTerritories" value="Trans-Jordan:Cyprus:Malta:Gibraltar:British Guiana:British Columbia:Alberta Saskatchewan Manitoba:Ontario:Quebec:Newfoundland Labrador:New Brunswick Nova Scotia:Iceland:Scotland:United Kingdom" count="14"/>
     </attachment>
 	
@@ -6843,7 +6848,7 @@
     <property name="Neutral Flyover Allowed" value="false" editable="false">
       <boolean/>
     </property>
-    <property name="mapName" value="young_grasshoppers_tournament_edition" editable="false"/>
+    <property name="mapName" value="young_grasshoppers_tournament_edition_work" editable="false"/>
     <property name="notes">
       <value><![CDATA[  
 <div style="padding:10px;font-size:14px;background-color:0F1622;text-align:justify;">
@@ -6855,7 +6860,7 @@
 https://www.axisandallies.org/forums/topic/35655/grasshopper-s-g40-tournament-edition-rule-set
 <br><br>
 <b>Notes:</b><br>
-- The game engine will not notify for the Axis Economy Objective of 140 IPCs.  This can be easily checked on the Player tab to the right. See the Axis total in the Production column.<br>
+- The game engine will not notify for the Axis Economy Objective of 144 IPCs.  This can be easily checked on the Player tab to the right. See the Axis total in the Production column.<br>
 - The game engine will not notify for the Allied Attrition Objective if tied at the end of the game.<br>
 - Automatic factory upgrades (US and UK) happen at the beginning of the Combat Move phase when politics take effect, which is after the Purchase Units phase.  You may get a warning that you do not have enough production capacity for the units that you've purchased, even though you will have enough capacity by the Place Units phase.  You can click to continue and ignore the warning.<br>
 <br>
@@ -6879,7 +6884,7 @@ https://www.axisandallies.org/forums/topic/35655/grasshopper-s-g40-tournament-ed
 <p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Africa</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;-The Axis powers control Morocco, Algeria, Tunisia, Libya, Tobruk, Alexandria, and Egypt</span></p>
 <p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Asia</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;-The Axis powers control Calcutta, Malaya, Hong Kong, and Shanghai</span></p>
 <p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Supremacy</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;-The Axis powers control Washington and/or San Francisco</span></p>
-<p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Economy</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;-All three Axis powers have a combined income of 140 IPCs on the income tracker</span></p>
+<p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Economy</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;-All three Axis powers have a combined income of 144 IPCs on the income tracker</span></p>
 <h1 style='margin-right:0cm;margin-left:0cm;font-size:32px;font-family:"Times New Roman",serif;font-weight:bold;margin-top:7.5pt;margin-bottom:7.5pt;line-height:30.0pt;background:#272B30; border-box;text-shadow:rgba(0, 0, 0, 0.3) -1px -1px 0px;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><em><span style='font-size:22px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Allied Powers</span></em></h1>
 <p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Supremacy</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;The Allied powers control Berlin and/or Tokyo</span></p>
 <p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>Rome</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br>&nbsp;-The Allied powers control Rome</span></p>
