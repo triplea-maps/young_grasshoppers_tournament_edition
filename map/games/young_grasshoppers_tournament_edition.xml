@@ -1,11 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE game SYSTEM "game.dtd">
 <game>
-  <info name="Young Grasshoppers Tournament Edition" version="1.0.3"/>
+  <info name="Young Grasshoppers Tournament Edition Work" version="1.0.4"/>
   <loader javaClass="games.strategy.triplea.TripleA"/>
   <triplea minimumVersion="1.8"/>
   <diceSides value="6"/>
   <map>
+  	<!-- Version 1.0.4 Updates
+		- Added UK Europe Lend Lease trigger -> receive 1 fighter in Quebec and 1 destroyer in SZ106 if the US are not brought into the war	
+		- Fixed issue with Diplomacy objective firing after combat instead of non-combat.  (if achieved by walking into a territory on non-combat the notification previously would not show)
+		- Fixed issue where if UK Pacific liberated Chinese territories with IC, the IC would not be destroyed (note: destruction of air/naval bases was never included in the original TripleA map, also no included here)
+    -->	  
 	<!-- Version 1.0.3 Updates
 		- Axis economy victory objective changed back to 144IPCs (changed in notes, the engine doesn't actually check for this)
 		- UK Europe national objectives changed to be 5IPCs each
@@ -3613,6 +3618,10 @@
       <option name="directPresenceTerritories" value="India" count="1"/>
       <option name="unitPresence" value="factory_upgrade:factory_major" count="1"/>
       <option name="invert" value="true"/>
+    </attachment>
+    <attachment name="conditionAttachment_British_Lend_Lease_Eligible" attachTo="British" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
+      <option name="relationship" value="British:Americans:Allied"/>
+      <option name="invert" value="true"/>
     </attachment>	
     <!-- TO COMPLETE - May need for UK Pacific NO 
     <attachment name="conditionAttachment_UK_Pacific_1_Malaya" attachTo="UK_Pacific" javaClass="games.strategy.triplea.attachments.RulesAttachment" type="player">
@@ -3993,7 +4002,21 @@
       <option name="uses" value="1"/>
       <option name="when" value="after:uk_pacificPolitics"/>
     </attachment>
-
+    <attachment name="triggerAttachment_British_Lend_Lease_From_US" attachTo="British" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
+      <option name="trigger" value="conditionAttachment_British_Lend_Lease_Eligible"/>
+      <option name="placement" value="Quebec:fighter"/>
+	  <option name="placement" value="106 Sea Zone:destroyer"/>
+	  <!-- <option name="notification" value="American_Lend_Lease_Notification"/> -->
+      <option name="uses" value="3"/>
+      <option name="when" value="after:britishEndTurn"/>
+    </attachment>
+	<attachment name="triggerAttachment_British_Lend_Lease_From_US_Notification" attachTo="British" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
+      <option name="trigger" value="conditionAttachment_British_Lend_Lease_Eligible"/>
+	  <option name="notification" value="American_Lend_Lease_Notification"/>
+      <option name="uses" value="3"/>
+      <option name="when" value="after:britishEndTurn"/>
+    </attachment>
+	
     <!-- Chinese Triggers -->
     <attachment name="triggerAttachment_Chinese_Artillery_Supplies" attachTo="Chinese" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
       <option name="conditions" value="objectiveAttachment_Chinese_1_Burma_Road"/>
@@ -4004,6 +4027,11 @@
       <option name="frontier" value="productionChinese_Burma_Road_Closed"/>
       <option name="invert" value="true"/>
     </attachment>
+    <attachment name="triggerAttachment_Chinese_Destroy_Factories_Kiangsu_UK_Pacific" attachTo="Chinese" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
+      <option name="trigger" value="conditionAttachment_Chinese_Own_Kiangsu"/>
+      <option name="removeUnits" value="Kiangsu:factory_minor:factory_major:factory_upgrade" count="1000"/>
+      <option name="when" value="after:uk_pacificBattle"/>
+    </attachment>	
     <attachment name="triggerAttachment_Chinese_Destroy_Factories_Kiangsu_Russians" attachTo="Chinese" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
       <option name="trigger" value="conditionAttachment_Chinese_Own_Kiangsu"/>
       <option name="removeUnits" value="Kiangsu:factory_minor:factory_major:factory_upgrade" count="1000"/>
@@ -4024,6 +4052,11 @@
       <option name="removeUnits" value="Kiangsu:factory_minor:factory_major:factory_upgrade" count="1000"/>
       <option name="when" value="after:britishBattle"/>
     </attachment>
+    <attachment name="triggerAttachment_Chinese_Destroy_Factories_Shantung_UK_Pacific" attachTo="Chinese" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
+      <option name="trigger" value="conditionAttachment_Chinese_Own_Shantung"/>
+      <option name="removeUnits" value="Shantung:factory_minor:factory_major:factory_upgrade" count="1000"/>
+      <option name="when" value="after:uk_pacificBattle"/>
+    </attachment>	
     <attachment name="triggerAttachment_Chinese_Destroy_Factories_Shantung_Russians" attachTo="Chinese" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
       <option name="trigger" value="conditionAttachment_Chinese_Own_Shantung"/>
       <option name="removeUnits" value="Shantung:factory_minor:factory_major:factory_upgrade" count="1000"/>
@@ -4044,6 +4077,11 @@
       <option name="removeUnits" value="Shantung:factory_minor:factory_major:factory_upgrade" count="1000"/>
       <option name="when" value="after:britishBattle"/>
     </attachment>
+    <attachment name="triggerAttachment_Chinese_Destroy_Factories_Manchuria_UK_Pacific" attachTo="Chinese" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
+      <option name="trigger" value="conditionAttachment_Chinese_Own_Manchuria"/>
+      <option name="removeUnits" value="Manchuria:factory_minor:factory_major:factory_upgrade" count="1000"/>
+      <option name="when" value="after:uk_pacificBattle"/>
+    </attachment>	
     <attachment name="triggerAttachment_Chinese_Destroy_Factories_Manchuria_Russians" attachTo="Chinese" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
       <option name="trigger" value="conditionAttachment_Chinese_Own_Manchuria"/>
       <option name="removeUnits" value="Manchuria:factory_minor:factory_major:factory_upgrade" count="1000"/>
@@ -5200,12 +5238,12 @@
     </attachment>	
 	<attachment name="triggerAttachment_Allies_Diplomacy_Objective" attachTo="UK_Pacific" javaClass="games.strategy.triplea.attachments.TriggerAttachment" type="player">
       <option name="conditions" value="conditionAttachment_Allies_Diplomacy_Objective_Condition"/>
-      <option name="when" value="after:uk_pacificBattle"/>
-      <option name="when" value="after:britishBattle"/>
-      <option name="when" value="after:chineseBattle"/>
-      <option name="when" value="after:russiansBattle"/>	 
-      <option name="when" value="after:americansBattle"/>	 
-      <option name="when" value="after:frenchBattle"/>	 	  
+      <option name="when" value="after:uk_pacificNonCombatMove"/>
+      <option name="when" value="after:britishNonCombatMove"/>
+      <option name="when" value="after:chineseNonCombatMove"/>
+      <option name="when" value="after:russiansNonCombatMove"/>	 
+      <option name="when" value="after:americansNonCombatMove"/>	 
+      <option name="when" value="after:frenchNonCombatMove"/>	 	  
       <option name="players" value="UK_Pacific"/>
       <option name="playerAttachmentName" value="RulesAttachment" count="conditionAttachment_Allies_Diplomacy_Objective_Switch"/>
       <option name="playerProperty" value="switch" count="true"/> 
@@ -6848,7 +6886,7 @@
     <property name="Neutral Flyover Allowed" value="false" editable="false">
       <boolean/>
     </property>
-    <property name="mapName" value="young_grasshoppers_tournament_edition" editable="false"/>
+    <property name="mapName" value="young_grasshoppers_tournament_edition_work" editable="false"/>
     <property name="notes">
       <value><![CDATA[  
 <div style="padding:10px;font-size:14px;background-color:0F1622;text-align:justify;">
@@ -6867,7 +6905,12 @@ https://www.axisandallies.org/forums/topic/35655/grasshopper-s-g40-tournament-ed
 <b>Creator:</b> Young Grasshopper<br>
 <b>TripleA Adaptation:</b> Contango<br><br>
 <img src="ZeroDiveSmall.png"/><br><br>
-
+<br>
+<b>Version 1.0.4 Updates:</b><br>
+- Added UK Europe Lend Lease trigger -> receive 1 fighter in Quebec and 1 destroyer in SZ106 if the US are not brought into the war<br>
+- Fixed issue with Diplomacy objective firing after combat instead of non-combat.  (if achieved by walking into a territory on non-combat the notification previously would not show)<br>
+- Fixed issue where if UK Pacific liberated Chinese territories with IC, the IC would not be destroyed (note: destruction of air/naval bases was never included in the original TripleA map, also no included here)<br>
+<br>
 <p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:30.0pt;background:#272B30;'><strong><span style='font-size:22px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>GRASSHOPPER&rsquo;S G40 TOURNAMENT EDITION</span></strong></p>
 <h1 style='margin-right:0cm;margin-left:0cm;font-size:32px;font-family:"Times New Roman",serif;font-weight:bold;margin-top:7.5pt;margin-bottom:7.5pt;line-height:30.0pt;background:#272B30;'><strong><span style='font-size:22px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>TOURNAMENT EDITION DESIGN CREDITS</span></strong></h1>
 <p style='margin:0cm;font-size:15px;font-family:"Calibri",sans-serif;'><strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;background:#272B30;'>Creator and Developer:</span></strong><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;background:#272B30;'>&nbsp;Young Grasshopper</span><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'><br style=" border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;"> <strong style=" border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;"><span style='font-family:"Helvetica",sans-serif;background:#272B30;'>Play Testers:</span></strong><span style="background:#272B30;">&nbsp;Young Grasshopper, Pink Panzer, Gerry the Gerry, Shelmann, Iron Stitch, Contango</span><br style=" border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;"> <strong style=" border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;"><span style='font-family:"Helvetica",sans-serif;background:#272B30;'>Rule Contributors:</span></strong><span style="background:#272B30;">&nbsp;Contango, Pink Panzer, Gerry the Jerry, Shelmann, Iron Stitch, Gargantua</span><br style=" border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;"> <strong style=" border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;"><span style='font-family:"Helvetica",sans-serif;background:#272B30;'>Map File Design:</span></strong><span style="background:#272B30;">&nbsp;Young Grasshopper, Ambilzi, Intrepid</span><br style=" border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;"> <strong style=" border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;"><span style='font-family:"Helvetica",sans-serif;background:#272B30;'>Rule Documents:</span></strong><span style="background:#272B30;">&nbsp;Young Grasshopper, Alan Teare, Contango</span><br style=" border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;"> <strong style=" border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;"><span style='font-family:"Helvetica",sans-serif;background:#272B30;'>Card Deck Design:</span></strong><span style="background:#272B30;">&nbsp;Young Grasshopper</span><br style=" border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;"> <strong style=" border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;"><span style='font-family:"Helvetica",sans-serif;background:#272B30;'>Online TripleA Developer:</span></strong><span style="background:#272B30;">&nbsp;Contango</span><br style=" border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;"> <strong style=" border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;"><span style='font-family:"Helvetica",sans-serif;background:#272B30;'>Online TripleA Contributor:</span></strong><span style="background:#272B30;">&nbsp;Barnee</span></span></p>
@@ -6914,6 +6957,8 @@ https://www.axisandallies.org/forums/topic/35655/grasshopper-s-g40-tournament-ed
 <p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30;'><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>The United Kingdom Pacific begins the game with a minor IC in India instead of a major IC. This minor IC will be upgraded to a major IC at no cost immediately when the UK Pacific is at war with Japan.</span></p>
 <h1 style='margin-right:0cm;margin-left:0cm;font-size:32px;font-family:"Times New Roman",serif;font-weight:bold;margin-top:7.5pt;margin-bottom:7.5pt;line-height:30.0pt;background:#272B30; border-box;color:inherit;text-shadow:rgba(0, 0, 0, 0.3) -1px -1px 0px;'><strong><span style='font-size:22px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>NEW DECLARATION OF WAR RULE</span></strong></h1>
 <p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30;'><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>The United Kingdom Pacific may not declare war, or perform an act of war against Japan until the beginning of their 3rd turn. However, if Japan makes a declaration of war against the UK Pacific, America, and/or Dutch before UKP 3rd turn, then the UK Pacific and America may declare war against Japan (Rules involving American restrictions and French sovereignty remain unchanged.)</span></p>
+<h1 style='margin-right:0cm;margin-left:0cm;font-size:32px;font-family:"Times New Roman",serif;font-weight:bold;margin-top:7.5pt;margin-bottom:7.5pt;line-height:30.0pt;background:#272B30; border-box;color:inherit;text-shadow:rgba(0, 0, 0, 0.3) -1px -1px 0px;'><strong><span style='font-size:22px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>NEW AMERICAN LEND LEASE RULE</span></strong></h1>
+<p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30;'><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>During each of their place new units phases in which the United States are a neutral power, the United Kingdom Europe will place one free UKE fighter in Quebec, plus one free UKE destroyer in sea zone #118 (#106 oob).</span></p>
 <h1 style='margin-right:0cm;margin-left:0cm;font-size:32px;font-family:"Times New Roman",serif;font-weight:bold;margin-top:7.5pt;margin-bottom:7.5pt;line-height:30.0pt;background:#272B30; border-box;color:inherit;text-shadow:rgba(0, 0, 0, 0.3) -1px -1px 0px;'><strong><span style='font-size:22px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>NEW DUTCH ISLAND RULE</span></strong></h1>
 <p style='margin-right:0cm;margin-left:0cm;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0cm;margin-bottom:7.5pt;line-height:107%;background:#272B30;'><span style='font-size:14px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>All originally controlled Dutch territories on the board are now treated like territories of an allied power whose capital has been captured, and may not be taken control of by allied powers unless liberated from Axis control.</span></p>
 <h1 style='margin-right:0cm;margin-left:0cm;font-size:32px;font-family:"Times New Roman",serif;font-weight:bold;margin-top:7.5pt;margin-bottom:7.5pt;line-height:30.0pt;background:#272B30; border-box;color:inherit;text-shadow:rgba(0, 0, 0, 0.3) -1px -1px 0px;'><strong><span style='font-size:22px;font-family:"Helvetica",sans-serif;color:#C8C8C8;'>NEW CAPITAL PURGE RULE</span></strong></h1>
